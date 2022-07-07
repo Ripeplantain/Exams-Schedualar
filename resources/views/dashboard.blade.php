@@ -15,7 +15,7 @@
                     <div>
                         
                         <div class="mt-2 flex justify-center gap-4">
-                            <h3 class="text-3xl font-bold text-gray-200 uppercase">Courses</h3> 
+                            <h3 class="text-3xl font-bold text-gray-200 uppercase tracking-wider">Analysis</h3> 
                         </div>
                        
                     </div>
@@ -23,17 +23,17 @@
                         <tbody>
                             <tr>
                                 <td class="py-2">Courses</td>
-                                <td class="text-gray-200">896</td>
+                                <td class="text-gray-200">{{$course_count}}</td>
 
                             </tr>
                             <tr>
                                 <td class="py-2">Programmes</td>
-                                <td class="text-gray-200">1200</td>
+                                <td class="text-gray-200">{{$prog_count}}</td>
 
                             </tr>
                             <tr>
                                 <td class="py-2">Department</td>
-                                <td class="text-gray-200">12</td>
+                                <td class="text-gray-200">{{$department_count}}</td>
                             </tr>
                         </tbody>
                     </table> 
@@ -48,7 +48,7 @@
 
 
 
-    {{-- tabl0es --}}
+    {{-- tables --}}
 
     <!-- component -->
 	<div class="container">
@@ -61,12 +61,14 @@
 				</tr>
 			</thead>
 			<tbody class="flex-1 sm:flex-none">
-				<tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-					<td class="border-grey-light border hover:bg-gray-100 p-3">John Covv</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">contato@johncovv.com</td>
-					<td class="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-red-600 hover:font-medium cursor-pointer">Delete</td>
+        @foreach($faculties as $faculty)
+        <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+					<td class="border-grey-light border hover:bg-gray-100 p-3">{{$faculty->short_name}}</td>
+					<td class="border-grey-light border hover:bg-gray-100 p-3 truncate">{{$faculty->long_name}}</td>
+					<td class="border-grey-light border hover:bg-gray-100 p-3 text-orange-400 hover:text-indigo-600 hover:font-medium cursor-pointer">View</td>
 				</tr>
 				
+        @endforeach
 			</tbody>
 		</table>
 	</div>

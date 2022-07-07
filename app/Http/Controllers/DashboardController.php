@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
+use App\Models\Prog_db;
+use App\Models\Course_db;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +17,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $course_count = Course_db::get()->count();
+        $prog_count = Prog_db::get()->count();
+        $department_count = Department::get()->count();
+        $faculties = Faculty::get();
+
+        return view('dashboard',[
+            'course_count' => $course_count,
+            'prog_count' => $prog_count,
+            'department_count' => $department_count,
+            'faculties' => $faculties
+        ]);
     }
 
     /**
