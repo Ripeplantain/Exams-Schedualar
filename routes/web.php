@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [HomeController::class,'index']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+        return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('dashboard',DashboardController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

@@ -27,18 +27,17 @@
             </div>
 
             <!-- Status -->
-            <div>
+            <div class="pt-3">
                 <x-label for="status" :value="__('Status')" />
 
-                <x-input id="status" class="block mt-1 w-full" type="text" name="status" :value="old('status')" required autofocus />
+                {{-- <x-input id="status" class="block mt-1 w-full" type="text" name="status" :value="old('status')" required autofocus /> --}} 
+
+                <select name="status" id="status" class="block font-medium text-sm text-gray-700">                   
+                    <option value="1">Administator</option>
+                    <option value="2">Faculty</option>
+                </select>
             </div>
 
-            <!-- Position -->
-            <div>
-                <x-label for="position" :value="__('Position')" />
-
-                <x-input id="position" class="block mt-1 w-full" type="text" name="position" :value="old('position')" required autofocus />
-            </div>
 
             <!-- Password -->
             <div class="mt-4">
