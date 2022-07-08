@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\VenueController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -25,7 +24,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('dashboard',DashboardController::class)->middleware(['auth']);
-// Route::resource('program',ProgramController::class)->middleware(['auth']);
-Route::resource('course',CoursesController::class)->middleware(['auth']);
+Route::resource('venue',VenueController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';
