@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faculty;
-use App\Models\Prog_db;
 use App\Models\Course_db;
-use App\Models\Department;
+use App\Models\Regdata;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +15,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $course_count = Course_db::get()->count();
-        $prog_count = Prog_db::get()->count();
-        $department_count = Department::get()->count();
-        $faculties = Faculty::get();
+        //
+    }
 
-        return view('dashboard',[
-            'course_count' => $course_count,
-            'prog_count' => $prog_count,
-            'department_count' => $department_count,
-            'faculties' => $faculties
-        ]);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -49,11 +47,29 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        $departments = Department::where('facultyid', $id)->get();
+        $courses = Course_db::where('deptid', $id)->get();
 
-        return view('faculty',[
-            'departments' => $departments,
+        foreach($courses as $course){
+            // dd($course->courseid);
+            $students = Regdata::where('courseid', $course->courseid)->get();
+        }
+
+        // dd($students);
+
+        return view('course',[
+            'courses' => $courses,
         ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**

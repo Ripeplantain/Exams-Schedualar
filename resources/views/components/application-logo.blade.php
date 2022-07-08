@@ -1,1 +1,1 @@
-<img src="image/ucclogo.png" alt="" class="w-12">
+<img src="/image/ucclogo.png" alt="" class="w-12">
