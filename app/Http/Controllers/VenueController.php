@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Venue_tb;
 use Illuminate\Http\Request;
 
 class VenueController extends Controller
@@ -13,7 +14,10 @@ class VenueController extends Controller
      */
     public function index()
     {
-        return view('venue');
+        $venues = Venue_tb::get();
+        return view('venue',[
+            'venues' => $venues
+        ]);
     }
 
     /**
