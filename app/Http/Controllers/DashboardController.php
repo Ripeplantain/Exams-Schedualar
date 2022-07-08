@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Faculty;
-use App\Models\Prog_db;
-use App\Models\Course_db;
+
+use App\Models\Regdata;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -17,16 +16,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $course_count = Course_db::get()->count();
-        $prog_count = Prog_db::get()->count();
-        $department_count = Department::get()->count();
-        $faculties = Faculty::get();
+      $regdata = Regdata::get();
+      $courses = Regdata::distinct()->count('courseid');
+      $students = Regdata::distinct()->count('studid');
+
 
         return view('dashboard',[
-            'course_count' => $course_count,
-            'prog_count' => $prog_count,
-            'department_count' => $department_count,
-            'faculties' => $faculties
+            'courses' => $courses,
+            'students' => $students,
         ]);
     }
 
@@ -49,11 +46,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        $departments = Department::where('facultyid', $id)->get();
-
-        return view('faculty',[
-            'departments' => $departments,
-        ]);
+        //
     }
 
     /**

@@ -10,8 +10,8 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        {{-- link to page style --}}
-        <link rel="stylesheet" href="/css/style.css">
+        {{-- font awesome --}}
+        <script src="https://kit.fontawesome.com/d57ac1b23a.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -25,5 +25,7 @@
                 {{ $slot }}
             </main>
         </div>
+
+        
     </body>
 </html>
