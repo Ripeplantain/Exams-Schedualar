@@ -5,7 +5,9 @@
     </div>
 
     <div class="mx-10 py-5">
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for venues..">
+        {{-- <form action="#" method="get">
+            <input type="search" name="search" id="myInput" onkeyup="myFunction()" placeholder="Search for venues..">
+        </form> --}}
 
         <table id="myTable">
         <tr class="header">
@@ -20,7 +22,7 @@
                 <td>{{$venue->venue_name}}</td>
                 <td>{{$venue->location_capacity}}</td>
                 <td>{{$venue->exam_capacity}}</td>
-                <td class="text-blue-600">Edit</td>
+                <td class="text-blue-600"><a href="/venue/{{$venue->venue_id}}/edit">Edit</a></td>
             </tr>
         @endforeach
         </table>

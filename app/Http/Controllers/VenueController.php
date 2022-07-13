@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Venue_tb;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class VenueController extends Controller
 {
@@ -15,6 +17,13 @@ class VenueController extends Controller
     public function index()
     {
         $venues = Venue_tb::get();
+
+        // if(request('search')){
+        //     $venues 
+        //         ->where('venue_name','like','%'.request('search').'%')->get();
+        //         return $venues;
+        // }
+
         return view('venue',[
             'venues' => $venues
         ]);
@@ -60,7 +69,11 @@ class VenueController extends Controller
      */
     public function edit($id)
     {
-        //
+        $venue = Venue_tb::find($id);
+
+        return view('edit',[
+            'venue' => $venue
+        ]);
     }
 
     /**
@@ -70,9 +83,19 @@ class VenueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Venue_tb $venue)
     {
-        //
+        $attribute = request()->validate([
+            'venue_name' => 'required',
+            'exam_capacity' => 'required | max:255',
+            'location_capacity' => 'required | max:255',
+        ]);
+
+        $venue->update($attribute);
+
+        Session::flash('success','It has been updated successfully');
+    
+        return Redirect::back();
     }
 
     /**
